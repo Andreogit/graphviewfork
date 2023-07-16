@@ -289,7 +289,7 @@ class _GraphViewAnimatedState extends State<_GraphViewAnimated> {
       children: [
         CustomPaint(
           size: MediaQuery.of(context).size,
-          painter: EdgeRender(algorithm, graph, Offset(60, 60)),
+          painter: EdgeRender(algorithm, graph, Offset(20, 20)),
         ),
         ...List<Widget>.generate(graph.nodeCount(), (index) {
           return Positioned(
