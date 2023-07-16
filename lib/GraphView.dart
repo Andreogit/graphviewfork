@@ -46,8 +46,7 @@ class GraphView extends StatefulWidget {
   final NodeWidgetBuilder builder;
   final bool animated;
 
-  GraphView(
-      {Key? key, required this.graph, required this.algorithm, this.paint, required this.builder, this.animated = true})
+  GraphView({Key? key, required this.graph, required this.algorithm, this.paint, required this.builder, this.animated = true})
       : super(key: key);
 
   @override
@@ -242,8 +241,7 @@ class _GraphViewAnimated extends StatefulWidget {
   final nodes = <Widget>[];
   final stepMilis = 25;
 
-  _GraphViewAnimated(
-      {Key? key, required this.graph, required this.algorithm, this.paint, required NodeWidgetBuilder builder}) {
+  _GraphViewAnimated({Key? key, required this.graph, required this.algorithm, this.paint, required NodeWidgetBuilder builder}) {
     graph.nodes.forEach((node) {
       nodes.add(node.data ?? builder(node));
     });
@@ -291,7 +289,7 @@ class _GraphViewAnimatedState extends State<_GraphViewAnimated> {
       children: [
         CustomPaint(
           size: MediaQuery.of(context).size,
-          painter: EdgeRender(algorithm, graph, Offset(20, 20)),
+          painter: EdgeRender(algorithm, graph, Offset(40, 40)),
         ),
         ...List<Widget>.generate(graph.nodeCount(), (index) {
           return Positioned(
