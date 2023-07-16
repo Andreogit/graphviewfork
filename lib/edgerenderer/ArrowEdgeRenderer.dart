@@ -1,7 +1,7 @@
 part of graphview;
 
 const double ARROW_DEGREES = 0.5;
-const double ARROW_LENGTH = 10;
+const double ARROW_LENGTH = 30;
 
 class ArrowEdgeRenderer extends EdgeRenderer {
   var trianglePath = Path();
@@ -40,11 +40,10 @@ class ArrowEdgeRenderer extends EdgeRenderer {
           ..style = PaintingStyle.fill;
       }
 
-      var triangleCentroid = drawTriangle(
-          canvas, edgeTrianglePaint ?? trianglePaint, clippedLine[0], clippedLine[1], clippedLine[2], clippedLine[3]);
+      var triangleCentroid =
+          drawTriangle(canvas, edgeTrianglePaint ?? trianglePaint, clippedLine[0], clippedLine[1], clippedLine[2], clippedLine[3]);
 
-      canvas.drawLine(Offset(clippedLine[0], clippedLine[1]), Offset(triangleCentroid[0], triangleCentroid[1]),
-          edge.paint ?? paint);
+      canvas.drawLine(Offset(clippedLine[0], clippedLine[1]), Offset(triangleCentroid[0], triangleCentroid[1]), edge.paint ?? paint);
     });
   }
 
