@@ -45,7 +45,7 @@ class GraphView extends StatefulWidget {
   final Paint? paint;
   final NodeWidgetBuilder builder;
   final bool animated;
-  final Function()? onUpdate;
+  final Function(double dx, double dy)? onUpdate;
 
   GraphView(
       {Key? key, required this.graph, required this.algorithm, this.paint, required this.builder, this.animated = true, this.onUpdate})
@@ -65,7 +65,7 @@ class _GraphViewState extends State<GraphView> {
         algorithm: widget.algorithm,
         paint: widget.paint,
         builder: widget.builder,
-        onUpdate: widget.onUpdate ?? () {},
+        onUpdate: widget.onUpdate ?? (double dx, double dy) {},
       );
     } else {
       return _GraphView(
@@ -74,7 +74,7 @@ class _GraphViewState extends State<GraphView> {
         algorithm: widget.algorithm,
         paint: widget.paint,
         builder: widget.builder,
-        onUpdate: widget.onUpdate ?? () {},
+        onUpdate: widget.onUpdate ?? (double dx, double dy) {},
       );
     }
   }
@@ -84,7 +84,7 @@ class _GraphView extends MultiChildRenderObjectWidget {
   final Graph graph;
   final Algorithm algorithm;
   final Paint? paint;
-  final Function()? onUpdate;
+  final Function(double dx, double dy)? onUpdate;
 
   _GraphView({Key? key, required this.graph, required this.algorithm, this.paint, this.onUpdate, required NodeWidgetBuilder builder})
       : super(key: key, children: _extractChildren(graph, builder)) {
@@ -245,7 +245,7 @@ class _GraphViewAnimated extends StatefulWidget {
   final Paint? paint;
   final nodes = <Widget>[];
   final stepMilis = 25;
-  final Function()? onUpdate;
+  final Function(double, double)? onUpdate;
 
   _GraphViewAnimated(
       {Key? key, required this.graph, required this.algorithm, this.paint, required NodeWidgetBuilder builder, required this.onUpdate}) {
@@ -262,7 +262,7 @@ class _GraphViewAnimatedState extends State<_GraphViewAnimated> {
   late Timer timer;
   late Graph graph;
   late Algorithm algorithm;
-  late Function()? onUpdate;
+  late Function(double, double)? onUpdate;
 
   @override
   void initState() {
@@ -304,7 +304,7 @@ class _GraphViewAnimatedState extends State<_GraphViewAnimated> {
             child: GestureDetector(
               child: widget.nodes[index],
               onPanUpdate: (details) {
-                onUpdate!();
+                onUpdate!(graph.getNodeAtPosition(index).position.dx, graph.getNodeAtPosition(index).position.dy);
                 graph.getNodeAtPosition(index).position += details.delta;
                 update();
               },
