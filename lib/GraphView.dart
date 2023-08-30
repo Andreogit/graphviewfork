@@ -245,7 +245,7 @@ class _GraphViewAnimated extends StatefulWidget {
   final Paint? paint;
   final nodes = <Widget>[];
   final stepMilis = 25;
-  final Function(double, double)? onUpdate;
+  final Function(double dx, double dy)? onUpdate;
 
   _GraphViewAnimated(
       {Key? key, required this.graph, required this.algorithm, this.paint, required NodeWidgetBuilder builder, required this.onUpdate}) {
@@ -262,7 +262,7 @@ class _GraphViewAnimatedState extends State<_GraphViewAnimated> {
   late Timer timer;
   late Graph graph;
   late Algorithm algorithm;
-  late Function(double, double)? onUpdate;
+  late Function(double dx, double dy)? onUpdate;
 
   @override
   void initState() {
