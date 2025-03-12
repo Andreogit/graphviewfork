@@ -40,10 +40,10 @@ class ArrowEdgeRenderer extends EdgeRenderer {
           ..style = PaintingStyle.fill;
       }
 
-      var triangleCentroid =
-          drawTriangle(canvas, edgeTrianglePaint ?? trianglePaint, clippedLine[0], clippedLine[1], clippedLine[2], clippedLine[3]);
+      // var triangleCentroid =
+      //     drawTriangle(canvas, edgeTrianglePaint ?? trianglePaint, clippedLine[0], clippedLine[1], clippedLine[2], clippedLine[3]);
 
-      canvas.drawLine(Offset(clippedLine[0], clippedLine[1]), Offset(triangleCentroid[0], triangleCentroid[1]), edge.paint ?? paint);
+      canvas.drawLine(Offset(clippedLine[0], clippedLine[1]), Offset(clippedLine[2], clippedLine[3]), edge.paint ?? paint);
     });
   }
 
@@ -53,11 +53,11 @@ class ArrowEdgeRenderer extends EdgeRenderer {
     var y3 = (y2 + ARROW_LENGTH * sin((angle - ARROW_DEGREES)));
     var x4 = (x2 + ARROW_LENGTH * cos((angle + ARROW_DEGREES)));
     var y4 = (y2 + ARROW_LENGTH * sin((angle + ARROW_DEGREES)));
-    trianglePath.moveTo(x2, y2); // Top;
-    trianglePath.lineTo(x3, y3); // Bottom left
-    trianglePath.lineTo(x4, y4); // Bottom right
-    trianglePath.close();
-    canvas.drawPath(trianglePath, paint);
+    // trianglePath.moveTo(x2, y2); // Top;
+    // trianglePath.lineTo(x3, y3); // Bottom left
+    // trianglePath.lineTo(x4, y4); // Bottom right
+    // trianglePath.close();
+    // canvas.drawPath(trianglePath, paint);
 
     // calculate centroid of the triangle
     var x = (x2 + x3 + x4) / 3;
